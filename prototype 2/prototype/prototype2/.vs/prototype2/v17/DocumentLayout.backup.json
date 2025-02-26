@@ -1,0 +1,153 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\op2\\prototype\\prototype2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\components\\pages\\rentalpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:components\\pages\\rentalpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\resources\\data\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:resources\\data\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\resources\\data\\rentalmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:resources\\data\\rentalmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\resources\\data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:resources\\data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\resources\\data\\equipmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:resources\\data\\equipmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|c:\\op2\\prototype\\prototype2\\components\\pages\\customerpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B0E0B30A-A185-45E9-A90A-055DA324E3FA}|prototype2.csproj|solutionrelative:components\\pages\\customerpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EquipmentManager.cs",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\EquipmentManager.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\EquipmentManager.cs",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\EquipmentManager.cs",
+              "RelativeToolTip": "Resources\\Data\\EquipmentManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T21:40:04.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CustomerPage.razor",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\Components\\Pages\\CustomerPage.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\CustomerPage.razor",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\Components\\Pages\\CustomerPage.razor",
+              "RelativeToolTip": "Components\\Pages\\CustomerPage.razor",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T19:53:07.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T19:51:35.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RentalPage.razor",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\Components\\Pages\\RentalPage.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\RentalPage.razor",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\Components\\Pages\\RentalPage.razor",
+              "RelativeToolTip": "Components\\Pages\\RentalPage.razor",
+              "ViewState": "AgIAACkAAAAAAAAAAAAuwDkAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T19:50:44.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Rental.cs",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\Rental.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\Rental.cs",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\Rental.cs",
+              "RelativeToolTip": "Resources\\Data\\Rental.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-13T19:32:44.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RentalManager.cs",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\RentalManager.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\RentalManager.cs",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\RentalManager.cs",
+              "RelativeToolTip": "Resources\\Data\\RentalManager.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAwwFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T19:49:49.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiProgram.cs",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\MauiProgram.cs",
+              "RelativeToolTip": "MauiProgram.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAxwBwAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T23:29:06.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MyDBContext.cs",
+              "DocumentMoniker": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\MyDBContext.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\MyDBContext.cs",
+              "ToolTip": "C:\\op2\\prototype\\prototype2\\Resources\\Data\\MyDBContext.cs",
+              "RelativeToolTip": "Resources\\Data\\MyDBContext.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T22:01:03.804Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

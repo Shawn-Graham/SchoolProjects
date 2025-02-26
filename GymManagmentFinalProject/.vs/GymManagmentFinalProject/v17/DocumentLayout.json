@@ -1,0 +1,205 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\resources\\data\\clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:resources\\data\\clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\resources\\data\\employees.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:resources\\data\\employees.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\resources\\data\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:resources\\data\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\resources\\data\\equipmentclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:resources\\data\\equipmentclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\components\\pages\\equipment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:components\\pages\\equipment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\resources\\data\\employeesclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:resources\\data\\employeesclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\resources\\data\\equipmentlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:resources\\data\\equipmentlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\components\\pages\\employee.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:components\\pages\\employee.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|c:\\op2\\gymmanagmentfinalproject 1\\gymmanagmentfinalproject\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C87FAE7-2DB3-4064-9198-6FF101D4D707}|GymManagmentFinalProject.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Employees.cs",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\Employees.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\Employees.cs",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\Employees.cs",
+              "RelativeToolTip": "Resources\\Data\\Employees.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T23:22:34.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DatabaseConnection.cs",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\DatabaseConnection.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\DatabaseConnection.cs",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\DatabaseConnection.cs",
+              "RelativeToolTip": "Resources\\Data\\DatabaseConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T17:24:55.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EquipmentClass.cs",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\EquipmentClass.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\EquipmentClass.cs",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\EquipmentClass.cs",
+              "RelativeToolTip": "Resources\\Data\\EquipmentClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T00:12:42.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Equipment.razor",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Pages\\Equipment.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Equipment.razor",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Pages\\Equipment.razor",
+              "RelativeToolTip": "Components\\Pages\\Equipment.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-09T00:12:11.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EmployeesClass.cs",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\EmployeesClass.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\EmployeesClass.cs",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\EmployeesClass.cs",
+              "RelativeToolTip": "Resources\\Data\\EmployeesClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T17:50:51.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiProgram.cs",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\MauiProgram.cs",
+              "RelativeToolTip": "MauiProgram.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T23:22:26.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EquipmentList.cs",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\EquipmentList.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\EquipmentList.cs",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\EquipmentList.cs",
+              "RelativeToolTip": "Resources\\Data\\EquipmentList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T00:13:12.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T03:57:54.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Clients.cs",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\Clients.cs",
+              "RelativeDocumentMoniker": "Resources\\Data\\Clients.cs",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Resources\\Data\\Clients.cs",
+              "RelativeToolTip": "Resources\\Data\\Clients.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T03:15:25.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Employee.razor",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Pages\\Employee.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Employee.razor",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Pages\\Employee.razor",
+              "RelativeToolTip": "Components\\Pages\\Employee.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T17:43:41.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-05T18:40:30.178Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

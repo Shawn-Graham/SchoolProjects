@@ -1,0 +1,265 @@
+﻿@page "/rentals"
+@inject RentalManager RentalManager
+@inject EquipmentManager EquipmentManager
+@inject IJSRuntime JSRuntime
+@using prototype2.Resources.Data
+@using System.Globalization
+
+<h3>Assign Rental to Customer</h3>
+
+@if (Message != null)
+{
+    <div class="alert alert-info">
+        @Message
+    </div>
+}
+<input type="text" @bind="SearchKeyword" placeholder="Enter name or email" class="form-control" />
+<button @onclick="SearchRentals" class="btn btn-primary">Search Rentals</button>
+
+<!-- Customer Selection -->
+<h4>Select Customer</h4>
+<div class="form-group">
+    <select class="form-control" @bind="SelectedCustomerId">
+        <option value="">Select Customer</option>
+        @foreach (var customer in Customers)
+        {
+            <option value="@customer.CustomerId">@customer.FirstName @customer.LastName</option>
+        }
+    </select>
+</div>
+
+<!-- Equipment Selection -->
+<select class="form-control" @bind="NewRental.EquipmentId">
+    <option value="">Select Equipment</option>
+    @foreach (var equipment in AvailableEquipment)
+    {
+        <option value="@equipment.EquipmentId">@equipment.Name</option>
+    }
+</select>
+<h4>Rental Processed</h4>
+<div class="form-group">
+    <input type="date" @bind="NewRental.Date" class="form-control" />
+</div>
+<!-- Rental Date -->
+<h4>Rental Date</h4>
+<div class="form-group">
+    <input type="date" @bind="NewRental.RentalDate" class="form-control" @oninput="OnRentalDateChanged" />
+</div>
+
+<!-- Return Date -->
+<h4>Return Date</h4>
+<div class="form-group">
+    <input type="date" @bind="NewRental.ReturnDate" class="form-control" @oninput="OnReturnDateChanged" />
+</div>
+
+<!-- Rental Cost -->
+<h4>Cost</h4>
+<div class="form-group">
+    <input type="number" @bind="NewRental.Cost" class="form-control" />
+</div>
+
+<!-- Add Rental Button -->
+<button class="btn btn-success mt-2" @onclick="AddRental">Add Rental</button>
+
+<h4>Customer's Rentals</h4>
+@if (Rentals.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rental ID</th>
+                <th>Equipment</th>
+                <th>Rental Date</th>
+                <th>Return Date</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rental in Rentals)
+            {
+                <tr>
+                    <td>@rental.RentalId</td>
+                    <td>@rental.Equipment?.Name</td>
+                    <td>@rental.RentalDate.ToString("yyyy-MM-dd")</td>
+                    <td>@(rental.ReturnDate?.ToString("yyyy-MM-dd") ?? "Not returned")</td>
+                    <td>@rental.Cost.ToString("C", CultureInfo.CurrentCulture)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No rentals found for this customer.</p>
+}
+
+@code {
+    private List<Customer> Customers { get; set; } = new List<Customer>();
+    private List<Equipment> AvailableEquipment { get; set; } = new List<Equipment>();
+    private List<Rental> Rentals { get; set; } = new List<Rental>();
+    private Rental NewRental { get; set; } = new Rental();
+    private int SelectedCustomerId { get; set; }
+    private string Message { get; set; }
+    private string SearchKeyword { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCustomersAsync();
+        await LoadAvailableEquipmentAsync();
+    }
+
+    private async Task LoadCustomersAsync()
+    {
+        try
+        {
+            Customers = await RentalManager.GetCustomersAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error loading customers: {ex.Message}";
+        }
+    }
+
+    private async Task LoadAvailableEquipmentAsync()
+    {
+        try
+        {
+            AvailableEquipment = await EquipmentManager.GetAllEquipmentAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error loading equipment: {ex.Message}";
+        }
+    }
+    private async Task LoadRentalsAsync()
+    {
+        try
+        {
+            if (SelectedCustomerId != 0)
+            {
+                Rentals = await RentalManager.GetRentalsByCustomerAsync(SelectedCustomerId);
+            }
+            else
+            {
+                Rentals.Clear();
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error loading rentals: {ex.Message}";
+        }
+    }
+    private async Task SearchRentals()
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(SearchKeyword))
+            {
+                Rentals = await RentalManager.GetRentalsByCustomerKeywordAsync(SearchKeyword);
+            }
+            else
+            {
+                Message = "Please enter a search keyword.";
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error fetching rentals: {ex.Message}";
+        }
+    }
+
+    private void OnRentalDateChanged()
+    {
+        CalculateCost();
+    }
+
+    private void OnReturnDateChanged()
+    {
+        CalculateCost(); 
+    }
+
+    private void CalculateCost()
+    {
+        // Check if both dates are set and valid
+        if (NewRental.RentalDate != DateTime.MinValue && NewRental.ReturnDate.HasValue)
+        {
+            // Calculate the number of rental days
+            var rentalDays = (NewRental.ReturnDate.Value - NewRental.RentalDate).Days;
+
+            if (rentalDays > 0 && NewRental.EquipmentId > 0)
+            {
+                // Find the selected equipment
+                var equipment = AvailableEquipment.FirstOrDefault(e => e.EquipmentId == NewRental.EquipmentId);
+                if (equipment != null)
+                {
+                    // Ensure the daily rate exists
+                    if (equipment.DailyRate > 0)
+                    {
+                        NewRental.Cost = equipment.DailyRate * rentalDays;
+                        StateHasChanged(); // Trigger a UI update
+                    }
+                    else
+                    {
+                        Message = "The selected equipment does not have a valid daily rate.";
+                    }
+                }
+                else
+                {
+                    Message = "Equipment not found.";
+                }
+            }
+            else
+            {
+                Message = "Invalid rental days or equipment selection.";
+                NewRental.Cost = 0;
+                StateHasChanged(); // Trigger a UI update
+            }
+        }
+        else
+        {
+            Message = "Please select valid rental and return dates.";
+            NewRental.Cost = 0;
+            StateHasChanged(); // Trigger a UI update
+        }
+    }
+
+    private async Task<int> GenerateUniqueRentalIdAsync()
+    {
+        var existingIds = await RentalManager.GetAllRentalIdsAsync();
+        Random random = new Random();
+        int newId;
+        do
+        {
+            newId = random.Next(1000, 9999); 
+        } while (existingIds.Contains(newId));
+
+        return newId;
+    }
+
+    private async Task AddRental()
+    {
+        try
+        {
+            if (SelectedCustomerId == 0 || NewRental.EquipmentId == 0 || NewRental.RentalDate == DateTime.MinValue || NewRental.Cost <= 0)
+            {
+                Message = "Please fill in all fields.";
+                return;
+            }
+
+            // Generate a unique Rental ID
+            NewRental.RentalId = await GenerateUniqueRentalIdAsync();
+            NewRental.CustomerId = SelectedCustomerId;
+
+            string result = await RentalManager.AddRentalAsync(NewRental);
+            Message = result;
+
+            // Clear form and reload rentals
+            NewRental = new Rental();
+            await LoadRentalsAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error adding rental: {ex.Message}";
+        }
+    }
+}

@@ -1,0 +1,4 @@
+C:\Users\Cody\source\repos\GymManagmentFinalProject\wwwroot\index.html
+C:\Users\Cody\source\repos\GymManagmentFinalProject\wwwroot\css\bootstrap\bootstrap.min.css
+C:\Users\Cody\source\repos\GymManagmentFinalProject\wwwroot\css\bootstrap\bootstrap.min.css.map
+C:\Users\Cody\source\repos\GymManagmentFinalProject\wwwroot\css\app.css

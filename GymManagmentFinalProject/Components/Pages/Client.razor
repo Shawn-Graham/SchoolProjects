@@ -1,0 +1,257 @@
+﻿@page "/client"
+@inject ClientsClass ClientsService
+@inject EmployeesClass EmployeeService
+@using GymManagmentFinalProject.Resources.Data
+
+<h3 class="text-center">Member</h3>
+
+<!-- Search Bar -->
+<div class="d-flex justify-content-center mb-4">
+    <input type="text" @bind="searchQuery" placeholder="Search by Client ID, First Name, or Last Name" class="form-control w-50 me-2" />
+    <button class="btn btn-primary w-25" @onclick="SearchClients">Search</button>
+    <button class="btn btn-secondary w-25 ms-2" @onclick="ClearSearch">Clear</button>
+</div>
+
+@if (isNoResultsFound)
+{
+    <div class="alert alert-warning text-center">No clients found matching your search criteria.</div>
+}
+
+@if (isTableVisible && clients != null && clients.Count == 1)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Client Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Age</th>
+                    <th>Membership Type</th>
+                    <th>Membership Status</th>
+                    <th>Assigned Employee</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@clients[0].MemberId</td>
+                    <td>@clients[0].FirstName</td>
+                    <td>@clients[0].LastName</td>
+                    <td>@clients[0].Email</td>
+                    <td>@clients[0].PhoneNumber</td>
+                    <td>@clients[0].Age</td>
+                    <td>@clients[0].MembershipType</td>
+                    <td>@clients[0].MembershipStatus</td>
+                    <td>
+                        @if (clients[0].AssignedEmployeeId.HasValue)
+                        {
+                            var employee = employees.FirstOrDefault(e => e.EmployeeId == clients[0].AssignedEmployeeId.Value);
+                            <span>@employee?.FirstName @employee?.LastName</span>
+                        }
+                        else
+                        {
+                            <span>Not Assigned</span>
+                        }
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => ShowConfirmation(clients[0].MemberId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+
+<!-- Update Membership Status Button -->
+<button class="btn btn-primary w-100 mb-4" @onclick="ToggleUpdateStatusFormVisibility">
+    @(isUpdateStatusFormVisible ? "Hide Update Status" : (selectedClientId != 0 ? "Update Membership Status" : "Select a Client to Update"))
+</button>
+
+<!-- Update Membership Status Form -->
+@if (isUpdateStatusFormVisible)
+{
+    <div class="form-group w-50 mx-auto">
+        <label>Select Client</label>
+        <select class="form-control" @bind="selectedClientId">
+            <option value="">--Select a Client--</option>
+            @if (clients != null && clients.Count > 0)
+            {
+                @foreach (var client in clients)
+                {
+                    <option value="@client.MemberId">@client.FirstName @client.LastName</option>
+                }
+            }
+        </select>
+
+        @if (selectedClientId != 0)
+        {
+            <div class="mt-3">
+                <label>Select New Membership Status</label>
+                <select class="form-control" @bind="selectedStatus">
+                    <option>Active</option>
+                    <option>Inactive</option>
+                </select>
+            </div>
+
+            <button class="btn btn-success w-100 mt-3" @onclick="UpdateClientStatus">Update Status</button>
+        }
+
+        <button class="btn btn-secondary w-100 mt-3" @onclick="CancelUpdateStatus">Cancel</button>
+    </div>
+}
+
+<!-- Add Client Form -->
+<button class="btn btn-primary w-100 mb-4" @onclick="ToggleFormVisibility">
+    @(isFormVisible ? "Hide" : "Add New Client")
+</button>
+
+@if (isFormVisible)
+{
+    <div class="form-group w-50 mx-auto">
+        <label>First Name</label>
+        <input class="form-control" @bind="newClient.FirstName" />
+
+        <label>Last Name</label>
+        <input class="form-control" @bind="newClient.LastName" />
+
+        <label>Email</label>
+        <input type="email" class="form-control" @bind="newClient.Email" />
+
+        <label>Phone Number</label>
+        <input class="form-control" @bind="newClient.PhoneNumber" />
+
+        <label>Age</label>
+        <input type="text" class="form-control" @bind="newClient.Age" />
+
+        <label>Membership Type</label>
+        <select class="form-control" @bind="newClient.MembershipType">
+            <option>Silver</option>
+            <option>Gold</option>
+            <option>Platinum</option>
+        </select>
+
+        <label>Membership Status</label>
+        <select class="form-control" @bind="newClient.MembershipStatus" disabled>
+            <option>Active</option> <!-- Status is fixed to Active for new clients -->
+        </select>
+
+        <label>Assigned Employee</label>
+        <select class="form-control" @bind="newClient.AssignedEmployeeId">
+            <option value="">Not Assigned</option>  <!-- Default option for "Not Assigned" -->
+            @foreach (var employee in employees)
+            {
+                <option value="@employee.EmployeeId">@employee.FirstName @employee.LastName</option>
+            }
+        </select>
+
+        <button class="btn btn-success w-100 mt-3" @onclick="AddClient">Add Client</button>
+    </div>
+}
+
+@if (isConfirmDeleteVisible)
+{
+    <div class="alert alert-warning">
+        Are you sure you want to delete this client?
+        <button class="btn btn-danger" @onclick="ConfirmDelete">Yes</button>
+        <button class="btn btn-secondary" @onclick="CancelDelete">No</button>
+    </div>
+}
+
+@code {
+    private List<Clients> clients = new List<Clients>(); // Initialize as an empty list to avoid null reference error
+    private List<Employees> employees = new List<Employees>(); // Store employees to avoid fetching multiple times
+    private string searchQuery;
+    private Clients newClient = new Clients { MembershipType = "Silver", MembershipStatus = "Active" };
+    private bool isFormVisible = false;
+    private bool isTableVisible = false;
+    private bool isNoResultsFound = false;
+    private bool isConfirmDeleteVisible = false;
+    private bool isUpdateStatusFormVisible = false;
+    private string selectedStatus;
+    private string currentStatus;
+    private int clientIdToDelete;
+    private Clients clientToUpdateStatus;
+    private int selectedClientId = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadEmployees(); // Load employees first
+        await LoadClients(); // Load clients after employees
+    }
+
+    private async Task LoadClients()
+    {
+        if (clients.Count == 0)
+        {
+            clients = await ClientsService.GetAllClientsAsync();  // Load all clients once
+        }
+    }
+
+    private async Task LoadEmployees()
+    {
+        employees = await EmployeeService.GetAllEmployeesAsync(); // Fetch all employees once
+    }
+
+    private async Task SearchClients()
+    {
+        if (string.IsNullOrWhiteSpace(searchQuery))
+        {
+            // If search query is empty, reset visibility
+            isTableVisible = false;
+            isNoResultsFound = false;
+            return;
+        }
+
+        clients = await ClientsService.SearchClientsAsync(searchQuery);
+        isNoResultsFound = clients.Count == 0; // Flag if no results are found
+        isTableVisible = clients.Count == 1;  // Show table only if exactly one client is found
+    }
+
+    private void ClearSearch()
+    {
+        searchQuery = string.Empty;
+        isNoResultsFound = false;
+        isTableVisible = false;  // Hide table when cleared
+    }
+
+    private async Task AddClient()
+    {
+        if (newClient.AssignedEmployeeId == null)
+        {
+            newClient.AssignedEmployeeId = null;  // Ensure "Not Assigned" for new clients
+        }
+
+        await ClientsService.AddClientAsync(newClient);
+        isFormVisible = false;
+    }
+
+    private void ToggleFormVisibility() => isFormVisible = !isFormVisible;
+    private void ToggleUpdateStatusFormVisibility() => isUpdateStatusFormVisible = !isUpdateStatusFormVisible;
+
+    private async Task UpdateClientStatus()
+    {
+        if (selectedClientId != 0 && selectedStatus != currentStatus)
+        {
+            clientToUpdateStatus = clients.FirstOrDefault(c => c.MemberId == selectedClientId);
+            if (clientToUpdateStatus != null)
+            {
+                clientToUpdateStatus.MembershipStatus = selectedStatus;
+                await ClientsService.UpdateClientAsync(clientToUpdateStatus);
+                currentStatus = selectedStatus;
+            }
+        }
+    }
+
+    private void CancelUpdateStatus() => isUpdateStatusFormVisible = false;
+    private void ShowConfirmation(int clientId) { clientIdToDelete = clientId; isConfirmDeleteVisible = true; }
+    private void CancelDelete() => isConfirmDeleteVisible = false;
+
+    private async Task ConfirmDelete()
+    {
+        await ClientsService.DeleteClientAsync(clientIdToDelete);
+        isConfirmDeleteVisible = false;
+    }
+}

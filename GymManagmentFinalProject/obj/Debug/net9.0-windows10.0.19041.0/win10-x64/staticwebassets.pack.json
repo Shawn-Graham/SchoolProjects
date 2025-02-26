@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\GymManagmentFinalProject.styles.css",
+      "PackagePath": "staticwebassets\\GymManagmentFinalProject.styles.css"
+    },
+    {
+      "Id": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\op2\\GymManagmentFinalProject 1\\GymManagmentFinalProject\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.GymManagmentFinalProject.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.GymManagmentFinalProject.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.build.GymManagmentFinalProject.props",
+      "PackagePath": "build\\GymManagmentFinalProject.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.buildMultiTargeting.GymManagmentFinalProject.props",
+      "PackagePath": "buildMultiTargeting\\GymManagmentFinalProject.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.buildTransitive.GymManagmentFinalProject.props",
+      "PackagePath": "buildTransitive\\GymManagmentFinalProject.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

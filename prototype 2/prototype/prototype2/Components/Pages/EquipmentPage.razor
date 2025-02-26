@@ -1,0 +1,210 @@
+﻿@page "/Equipment"
+@inject EquipmentManager EquipmentManager
+@inject IJSRuntime JSRuntime
+@using prototype2.Resources.Data
+
+<h3>Equipment Management</h3>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <div class="alert alert-info">
+        @Message
+    </div>
+}
+
+<!-- Search Section -->
+<h4>Search Equipment</h4>
+<input type="text" @bind="SearchKeyword" class="form-control" placeholder="Enter equipment name or description" />
+<button class="btn btn-primary mt-2" @onclick="SearchEquipment">Search</button>
+
+<!-- Equipment List -->
+@if (EquipmentList.Any())
+{
+    <h4>Equipment List</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Equipment ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Daily Rate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipment in EquipmentList)
+            {
+                <tr>
+                    <td>@equipment.EquipmentId</td>
+                    <td>@equipment.Name</td>
+                    <td>@equipment.Description</td>
+                    <td>@equipment.DailyRate</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => DeleteEquipment(equipment.EquipmentId)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No equipment found.</p>
+}
+
+<!-- Add Equipment Form -->
+<h4>Add New Equipment</h4>
+<div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" @bind="NewEquipment.Name" class="form-control" placeholder="Enter equipment name" />
+</div>
+<div class="form-group">
+    <label for="categoryId">Category</label>
+    <select class="form-control" @bind="NewEquipment.CategoryId">
+        <option value="">Select Category</option>
+        @foreach (var category in Categories)
+        {
+            <option value="@category.CategoryId">@category.Name</option>
+        }
+    </select>
+</div>
+<div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" @bind="NewEquipment.Description" class="form-control" placeholder="Enter equipment description" />
+</div>
+<div class="form-group">
+    <label for="dailyRate">Daily Rate</label>
+    <input type="number" @bind="NewEquipment.DailyRate" class="form-control" placeholder="Enter daily rate" />
+</div>
+<button class="btn btn-success mt-2" @onclick="AddEquipment">Add Equipment</button>
+
+@code {
+    private List<Equipment> EquipmentList { get; set; } = new List<Equipment>();
+    private Equipment NewEquipment { get; set; } = new Equipment();
+    private List<Category> Categories { get; set; } = new List<Category>();
+    private string SearchKeyword { get; set; } = string.Empty;
+    private string Message { get; set; } = string.Empty;
+    private bool IsLoading { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            // Load categories for the dropdown
+            Categories = await EquipmentManager.GetCategoriesAsync();
+            // Load all equipment data
+            await LoadEquipmentAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error loading data: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task LoadEquipmentAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            EquipmentList = await EquipmentManager.GetAllEquipmentAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error loading equipment: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task SearchEquipment()
+    {
+        try
+        {
+            IsLoading = true;
+            if (!string.IsNullOrEmpty(SearchKeyword))
+            {
+                EquipmentList = await EquipmentManager.SearchEquipmentAsync(SearchKeyword);
+            }
+            else
+            {
+                await LoadEquipmentAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error searching equipment: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task AddEquipment()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(NewEquipment.Name) || string.IsNullOrEmpty(NewEquipment.Description) || NewEquipment.DailyRate <= 0 || NewEquipment.CategoryId == 0)
+            {
+                Message = "Please fill in all fields.";
+                return;
+            }
+
+            IsLoading = true;
+
+            // Generate EquipmentId based on CategoryId
+            string categoryPrefix = NewEquipment.CategoryId.ToString().PadLeft(1, '0');
+            var maxEquipmentIdForCategory = await EquipmentManager.GetMaxEquipmentIdForCategoryAsync(NewEquipment.CategoryId);
+            int nextEquipmentId = maxEquipmentIdForCategory >= 1004
+                ? int.Parse(categoryPrefix + (maxEquipmentIdForCategory % 100).ToString().PadLeft(1, '0')) + 1
+                : int.Parse(categoryPrefix + "04");
+
+            NewEquipment.EquipmentId = nextEquipmentId;
+
+            var result = await EquipmentManager.AddEquipmentAsync(NewEquipment);
+            Message = result;
+
+            // Clear form and reload equipment list
+            NewEquipment = new Equipment();
+            await LoadEquipmentAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error adding equipment: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task DeleteEquipment(int equipmentId)
+    {
+        try
+        {
+            var confirm = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete equipment with ID {equipmentId}?");
+            if (!confirm) return;
+
+            IsLoading = true;
+            var result = await EquipmentManager.DeleteEquipmentAsync(equipmentId);
+            Message = result;
+            await LoadEquipmentAsync();  // Reload equipment list after deletion
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error deleting equipment: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}
+

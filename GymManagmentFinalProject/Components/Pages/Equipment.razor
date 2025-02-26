@@ -1,0 +1,174 @@
+﻿@page "/equipment"
+@inject EquipmentClass EquipmentService
+@using GymManagmentFinalProject.Resources.Data
+
+<h3 class="text-center">Equipment</h3>
+<!-- Search Bar -->
+<div class="d-flex justify-content-center mb-4">
+    <input type="text" @bind="searchQuery" placeholder="Search by Equipment ID or Name" class="form-control w-50 me-2" />
+    <button class="btn btn-primary w-25" @onclick="searchEquipment">Search</button>
+    <button class="btn btn-secondary w-25 ms-2" @onclick="clearSearch">Clear</button>
+</div>
+@if (isNoResultsFound)
+{
+    <div class="alert alert-warning text-center">No clients found matching your search criteria.</div>
+}
+@if (isTableVisible && equipment != null && equipment.Count == 1)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Equipment Id</th>
+                    <th>Equipment Name</th>
+                    <th>Equipment Type</th>
+                    <th>Year Made</th>
+                    <th>Year Purchased</th>
+                    <th>Assigned to Employee</th>
+                    <th>In Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@equipment[0].EquipmentId</td>
+                    <td>@equipment[0].EquipmentName</td>
+                    <td>@equipment[0].EquipmentType</td>
+                    <td>@equipment[0].YearMade</td>
+                    <td>@equipment[0].YearPurchased</td>
+                    <td>@equipment[0].AssignedToEmployeeId</td>
+                    <td>@equipment[0].InUse</td>
+                    <td>
+                        <button class="btn btn-secondary" @onclick="() => ShowConfirmation1(equipment[0].EquipmentId)">Change Status</button>
+                        <button class="btn btn-danger" @onclick="() => ShowConfirmation2(equipment[0].EquipmentId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+
+@if (isConfirmDeleteVisible) 
+{
+    <div class="alert alert-danger">
+        Are you sure you want to delete?
+        <button class="btn btn-danger" @onclick="confirmDelete">Yes</button>
+        <button class="btn btn-danger" @onclick="Cancel">Cancel</button>
+    </div>
+}
+
+@if (isChangeVisible)
+{
+    <div class="form-group w-50 mx-auto">
+        <label>Select Equipment</label>
+        <select class="form-control" @bind="selectedEquipId">
+            <option value="">--Select Equipment--</option>
+            @if (equipment != null && equipment.Count > 0)
+            {
+                @foreach (var item in equipment)
+                {
+                    <option value="@item.EquipmentId">@item.EquipmentId</option>
+                }
+            }
+        </select>
+
+        @if (selectedEquipId != 0)
+        {
+            <div class="mt-3">
+                <label>Select New Status</label>
+                <select class="form-control" @bind="selectedStatus">
+                    <option>T</option>
+                    <option>F</option>
+                </select>
+            </div>
+
+            <button class="btn btn-success w-100 mt-3" @onclick="UpdateEquipmentStatus">Update Status</button>
+        }
+
+        <button class="btn btn-secondary w-100 mt-3" @onclick="CancelUpdateStatus">Cancel</button>
+    </div>
+}
+
+
+@code {
+    private List<EquipmentList> equipment = new List<EquipmentList>();
+    private string searchQuery;
+    private bool isFormVisible = false;
+    private bool isTableVisible = false;
+    private bool isNoResultsFound = false;
+    private void ToggleAddFormVisibility() => isFormVisible = !isFormVisible;
+    private int equipmentToDelete;
+    private int equipmentToChange;
+    private bool isConfirmDeleteVisible = false;
+    private bool isChangeVisible = false;
+    private int selectedEquipId = 0;
+    private string selectedStatus;
+    private EquipmentList equipmentToUpdate;
+
+    private void ShowConfirmation1(int equipmentId) { equipmentToChange = equipmentId; isChangeVisible = true; }
+    private void ShowConfirmation2(int equipmentId) { equipmentToDelete = equipmentId; isConfirmDeleteVisible = true; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await loadEquipment();
+    }
+
+    private async Task loadEquipment()
+    {
+        if (equipment.Count == 0) 
+        {
+            equipment = await EquipmentService.LoadEquipment();
+        }
+
+    }
+
+    private async Task searchEquipment()
+    {
+        if (string.IsNullOrWhiteSpace(searchQuery))
+        {
+            isTableVisible = false;
+            isNoResultsFound = false;
+            return;
+        }
+
+        equipment = await EquipmentService.SearchEquipment(searchQuery);
+        isNoResultsFound = equipment.Count == 0;
+        isTableVisible = equipment.Count == 1;
+    }
+
+    private void clearSearch()
+    {
+        searchQuery = string.Empty;
+        isNoResultsFound = false;
+        isTableVisible = false;
+    }
+
+    private void Cancel()
+    {
+        isConfirmDeleteVisible = false;
+    }
+
+    private async Task confirmDelete()
+    {
+        await EquipmentService.DeleteEquipment(equipmentToDelete);
+        isConfirmDeleteVisible = false;
+    }
+
+    private async Task UpdateEquipmentStatus()
+    {
+        if (selectedEquipId != 0)
+        {
+            equipmentToUpdate = equipment.FirstOrDefault(c => c.EquipmentId == selectedEquipId);
+            if (equipmentToUpdate != null)
+            {
+                equipmentToUpdate.InUse = selectedStatus;
+                await EquipmentService.ChangeStatus(equipmentToUpdate);
+            }
+        }
+        isChangeVisible = false;
+    }
+
+    private async Task CancelUpdateStatus()
+    {
+        isChangeVisible = false;
+    }
+}

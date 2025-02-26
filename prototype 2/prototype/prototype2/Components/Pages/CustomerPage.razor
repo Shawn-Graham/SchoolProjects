@@ -1,0 +1,212 @@
+﻿@page "/customer"
+@inject CustomerManager CustomerManagers
+@inject IJSRuntime JSRuntime
+@using prototype2.Resources.Data
+<h3>Customer Management</h3>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <div class="alert alert-info">
+        @Message
+    </div>
+}
+
+<!-- Search Section -->
+<h4>Search Customers</h4>
+<input type="text" @bind="SearchKeyword" class="form-control" placeholder="Enter name or email" />
+<button class="btn btn-primary mt-2" @onclick="SearchCustomers">Search</button>
+
+<!-- Customer List -->
+@if (Customers.Any())
+{
+    <h4>Customer List</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Customers)
+            {
+                <tr>
+                    <td>@customer.CustomerId</td>
+                    <td>@customer.FullName</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.ContactPhone</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => DeleteCustomer(customer.CustomerId)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No customers found.</p>
+}
+
+<!-- Add Customer Form -->
+<h4>Add New Customer</h4>
+<div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" @bind="NewCustomer.FirstName" class="form-control" placeholder="Enter first name" />
+</div>
+<div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" @bind="NewCustomer.LastName" class="form-control" placeholder="Enter last name" />
+</div>
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" @bind="NewCustomer.Email" class="form-control" placeholder="Enter email" />
+</div>
+<div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="text" @bind="NewCustomer.ContactPhone" class="form-control" placeholder="Enter phone number" />
+</div>
+<button class="btn btn-success mt-2" @onclick="AddCustomer">Add Customer</button>
+
+@code {
+    private List<Customer> Customers { get; set; } = new List<Customer>();
+    private Customer NewCustomer { get; set; } = new Customer();
+    private string SearchKeyword { get; set; } = string.Empty;
+    private string Message { get; set; } = string.Empty;
+    private bool IsLoading { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCustomersAsync();
+    }
+
+    private async Task LoadCustomersAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            Customers = await CustomerManagers.GetAllCustomersAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error loading customers: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task SearchCustomers()
+    {
+        try
+        {
+            IsLoading = true;
+            if (!string.IsNullOrEmpty(SearchKeyword))
+            {
+                Customers = await CustomerManagers.SearchCustomersAsync(SearchKeyword);
+            }
+            else
+            {
+                await LoadCustomersAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error searching customers: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+    private async Task AddCustomer()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(NewCustomer.FirstName) || string.IsNullOrEmpty(NewCustomer.LastName))
+            {
+                Message = "Please fill in all fields.";
+                return;
+            }
+
+            IsLoading = true;
+
+            // Generate a new Customer ID starting from 1004
+            int newId = await CustomerManagers.GetNextCustomerIdAsync();
+            NewCustomer.CustomerId = newId;
+
+            // Add the customer to the database
+            var result = await CustomerManagers.AddCustomerAsync(NewCustomer);
+            Message = result;
+
+            // Clear the form
+            NewCustomer = new Customer();
+
+            // Reload customer list
+            await LoadCustomersAsync();
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error adding customer: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+
+    // private async Task AddCustomer()
+    // {
+    //     try
+    //     {
+    //         if (string.IsNullOrEmpty(NewCustomer.FirstName) || string.IsNullOrEmpty(NewCustomer.LastName))
+    //         {
+    //             Message = "Please fill in all fields.";
+    //             return;
+    //         }
+
+    //         IsLoading = true;
+    //         var result = await CustomerManagers.AddCustomerAsync(NewCustomer);
+    //         Message = result;
+    //         NewCustomer = new Customer(); Clear form
+    //         await LoadCustomersAsync();  Reload customer list
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Message = $"Error adding customer: {ex.Message}";
+    //     }
+    //     finally
+    //     {
+    //         IsLoading = false;
+    //     }
+    // }
+
+    private async Task DeleteCustomer(int customerId)
+    {
+        try
+        {
+            var confirm = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete customer with ID {customerId}?");
+            if (!confirm) return;
+
+            IsLoading = true;
+            var result = await CustomerManagers.DeleteCustomerAsync(customerId);
+            Message = result;
+            await LoadCustomersAsync();  // Reload customer list after deletion
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error deleting customer: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}
+
+  

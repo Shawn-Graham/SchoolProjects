@@ -1,0 +1,8 @@
+C:\op2\prototype\prototype2\wwwroot\index.html
+C:\op2\prototype\prototype2\wwwroot\css\app.css
+C:\op2\prototype\prototype2\wwwroot\css\bootstrap\bootstrap.min.css.map
+C:\op2\prototype\prototype2\wwwroot\css\bootstrap\bootstrap.min.css
+wwwroot\css\app.css
+wwwroot\css\bootstrap\bootstrap.min.css
+wwwroot\css\bootstrap\bootstrap.min.css.map
+wwwroot\index.html

@@ -1,0 +1,8 @@
+C:\op2\GymManagmentFinalProject 1\GymManagmentFinalProject\wwwroot\index.html
+C:\op2\GymManagmentFinalProject 1\GymManagmentFinalProject\wwwroot\css\bootstrap\bootstrap.min.css
+C:\op2\GymManagmentFinalProject 1\GymManagmentFinalProject\wwwroot\css\bootstrap\bootstrap.min.css.map
+C:\op2\GymManagmentFinalProject 1\GymManagmentFinalProject\wwwroot\css\app.css
+wwwroot\css\app.css
+wwwroot\css\bootstrap\bootstrap.min.css
+wwwroot\css\bootstrap\bootstrap.min.css.map
+wwwroot\index.html
